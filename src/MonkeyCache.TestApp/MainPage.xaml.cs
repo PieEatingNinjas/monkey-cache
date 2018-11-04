@@ -7,6 +7,7 @@ using Xamarin.Forms;
 using BarrelSQL = MonkeyCache.SQLite.Barrel;
 using BarrelFile = MonkeyCache.FileStore.Barrel;
 using BarrelLite = MonkeyCache.LiteDB.Barrel;
+using BarrelRealm = MonkeyCache.Realm.Barrel;
 
 namespace MonkeyCache.TestApp
 {
@@ -19,6 +20,7 @@ namespace MonkeyCache.TestApp
 		IBarrel sql;
 		IBarrel file;
 		IBarrel lite;
+		IBarrel realm;
         public MainPage()
         {
             InitializeComponent();
@@ -30,11 +32,13 @@ namespace MonkeyCache.TestApp
             BarrelLite.ApplicationId = "com.refractored.monkeycachetestlite";
 			BarrelFile.ApplicationId = "com.refractored.monkeycachetestfile";
 			BarrelSQL.ApplicationId = "com.refractored.monkeycachetestsql";
+			BarrelRealm.ApplicationId = "com.refractored.monkeycachetestrealm";
 
 
 			sql = BarrelSQL.Current;
 			lite = BarrelLite.Current;
 			file = BarrelFile.Current;
+			realm = BarrelRealm.Current;
 
 
 			ButtonExpired.Clicked += ButtonExpired_Clicked;
@@ -57,6 +61,8 @@ namespace MonkeyCache.TestApp
 				current = file;
 			else if (UseLiteDB.IsToggled)
 				current = lite;
+			else if (UseRealm.IsToggled)
+				current = realm;
 			else
 				current = sql;//fallback
 
@@ -71,7 +77,7 @@ namespace MonkeyCache.TestApp
                 return;
             }
             var monkey = new Monkey { Name =  EntryName.Text};
-			GetCurrent().Add<Monkey>("monkey", monkey, TimeSpan.FromDays(1));
+			GetCurrent().Add<Monkey>("monkey", monkey, TimeSpan.FromSeconds(20));
             DisplayAlert(":)", "Saved!", "OK");
         }
 

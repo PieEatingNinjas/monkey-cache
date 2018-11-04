@@ -136,6 +136,7 @@
     <Content Include="Assets\Wide310x150Logo.scale-150.png" />
     <Content Include="Assets\Wide310x150Logo.scale-200.png" />
     <Content Include="Assets\Wide310x150Logo.scale-400.png" />
+    <None Include="FodyWeavers.xml" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -165,6 +166,10 @@
     <ProjectReference Include="..\MonkeyCache.LiteDB\MonkeyCache.LiteDB.csproj">
       <Project>{a92c8cd7-6a47-4969-befa-0919561f3947}</Project>
       <Name>MonkeyCache.LiteDB</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MonkeyCache.Realm\MonkeyCache.Realm.csproj">
+      <Project>{bbe5ca33-071d-4776-83de-1e71e474864f}</Project>
+      <Name>MonkeyCache.Realm</Name>
     </ProjectReference>
     <ProjectReference Include="..\MonkeyCache.SQLite\MonkeyCache.SQLite.csproj">
       <Project>{ea91cb9d-339a-410e-8ef0-8b765d3bfe3c}</Project>
